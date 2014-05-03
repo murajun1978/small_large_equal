@@ -1,0 +1,17 @@
+require "nkf"
+
+class Num
+  def initialize(arg)
+    @one_num, @two_num = zen_to_han(arg).split(" ")(:to_i)
+  end
+
+  def match
+    operator = "==" if @one_num == @two_num
+    operator = "<" if @one_num < @two_num
+    operator = ">" if @one_num > @two_num
+  end
+
+  private def zen_to_han(char)
+    NKF.nkf('-m0Z1 -w', char)
+  end
+end
